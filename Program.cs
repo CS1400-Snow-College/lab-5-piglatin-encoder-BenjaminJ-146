@@ -15,22 +15,22 @@ string pigLatin = "";
 // Piglatin conversion
 for (int i = 0; i < words.Length; i++)
 {   
-    // Word doesn't ends with punctuation
+    // Word doesn't end with punctuation
     if (!punctuationCheck(words[i]))
     {
         words[i] = words[i].ToLower();
         // Word starts with a vowel
         if (startsWithVowel(words[i])) 
         {
-            words[i] += "way ";
-            pigLatin += words[i];
+            words[i] += "way";
+            pigLatin += words[i] + " ";
         }
         // Word doesn't start with a vowel
         else
         {
             int index = firstVowel(words[i]); // Finds which position the first vowel is in      
-            words[i] = words[i][index..words[i].Length] + words[i][0..index] + "ay ";
-            pigLatin += words[i];
+            words[i] = words[i][index..words[i].Length] + words[i][0..index] + "ay";
+            pigLatin += words[i] + " ";
         }
     }
     // Word Ends with Punctuation
@@ -43,20 +43,91 @@ for (int i = 0; i < words.Length; i++)
         if (startsWithVowel(words[i])) 
         {
 
-            words[i] += "way" + punctuation + " "; // Adds punctuation back on
-            pigLatin += words[i];
+            words[i] += "way" + punctuation; // Adds punctuation back on
+            pigLatin += words[i] + " ";
         }
         // Word doesn't start with a vowel
         else
         {
             int index = firstVowel(words[i]); // Finds which position the first vowel is in      
-            words[i] = words[i][index..words[i].Length] + words[i][0..index] + "ay" + punctuation + " ";
-            pigLatin += words[i];
+            words[i] = words[i][index..words[i].Length] + words[i][0..index] + "ay" + punctuation;
+            pigLatin += words[i] + " ";
         }
     }
 }
 
 Console.WriteLine($"This is your message in Piglatin: {pigLatin}");
+
+// Random Number Generator
+Random rand = new Random();
+int randomOffset = rand.Next(1, 26);
+
+// Encryption
+string cryptogram = "";
+for (int i = 0; i < words.Length; i++)
+{   
+    // Word doesn't end with punctuation
+    if (!punctuationCheck(words[i]))
+    {   
+        char[] characters = new char[words[i].Length]; // New array to split a word into individual characters
+        for (int j = 0; j < words[i].Length; j++)
+        {
+            characters[j] = words[i][j];
+        }
+        // Offsets each character of the word
+        for (int j = 0; j < words[i].Length; j++)
+        {
+            if ((characters[j] + randomOffset) > 122)
+            {
+                characters[j] = (char)(characters[j] + randomOffset - 26);
+            }
+            else
+            {
+                characters[j] = (char)(characters[j] + randomOffset);
+            }
+        }
+        words[i] = "";
+        for (int j = 0; j < characters.Length; j++)
+        {
+            words[i] += characters[j];
+        }
+        cryptogram += words[i] + " ";
+    }
+    // Word Ends with Punctuation
+    else
+    {
+        // Removes the punctuation and stores it in another variable for later use
+        char punctuation = words[i][words[i].Length - 1];
+        words[i] = words[i][0..(words[i].Length - 1)];
+        // New array to split a word into individual characters
+        char[] characters = new char[words[i].Length]; // New array to split a word into individual characters
+        for (int j = 0; j < words[i].Length; j++)
+        {
+            characters[j] = words[i][j];
+        }
+        // Offsets each character of the word
+        for (int j = 0; j < words[i].Length; j++)
+        {
+            if ((characters[j] + randomOffset) > 122)
+            {
+                characters[j] = (char)(characters[j] + randomOffset - 26);
+            }
+            else
+            {
+                characters[j] = (char)(characters[j] + randomOffset);
+            }
+        }
+        words[i] = "";
+        for (int j = 0; j < characters.Length; j++)
+        {
+            words[i] += characters[j];
+        }
+        cryptogram += words[i] + punctuation + " ";
+    }
+}
+
+Console.WriteLine($"This is your message as a cryptogram: {cryptogram}");
+
 
 // Method for checking if a word starts with a vowel
 bool startsWithVowel(string word)
