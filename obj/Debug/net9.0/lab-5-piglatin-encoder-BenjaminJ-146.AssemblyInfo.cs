@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lab-5-piglatin-encoder-BenjaminJ-146")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c5a8836530224da6129ddf5056b28cf4dd1b74c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9779b9dc9c9778e6a704dc022c072298d5fc4a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("lab-5-piglatin-encoder-BenjaminJ-146")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lab-5-piglatin-encoder-BenjaminJ-146")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
